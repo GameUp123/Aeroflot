@@ -1,0 +1,331 @@
+﻿<Window x:Class="Aeroflot.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        Title="MainWindow" Icon="Image/free-icon-travel-1973982.ico"
+        xmlns:local="clr-namespace:Aeroflot"
+        mc:Ignorable="d" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Width="400" 
+        MouseDown="Window_MouseDown" Background="{x:Null}" Height="570">
+
+
+
+    <Border BorderBrush="Transparent" BorderThickness="0" CornerRadius="13">
+        <Border.Background>
+            <ImageBrush ImageSource="/Image/sky.jpg"
+                      Stretch="UniformToFill"  />
+        </Border.Background>
+        <Grid>
+            <Rectangle Fill="White" Opacity="0.5" RadiusX="12" RadiusY="12" />
+            <Grid Margin="-2,0,0,2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                x:Name="ErrorPass" TextWrapping="Wrap" Margin="94,279,62,244" Foreground="Red" FontFamily="Century Gothic" FontSize="16" FontWeight="Bold"><Run Language="ru-ru" Text="Введен неверный логин или пароль"/>
+                </TextBlock>
+                <!-- Основной текст -->
+                <TextBlock
+                   Foreground="Black"
+                   FontSize="12"
+                   FontWeight="Medium"
+                   FontFamily="Montserrat"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   Margin="55,129,32,401"><Run Language="ru-ru" Text="Войдите в"/><Run Text=" учетную запись, чтобы получить доступ к удобному бронированию авиабилетов."/></TextBlock>
+
+                <TextBlock Text="FlyWay"
+                   Foreground="Black"
+                   FontSize="30"
+                   FontWeight="Medium"
+                   FontFamily="Montserrat"
+                   HorizontalAlignment="Left" Margin="156,82,0,450" Width="102"/>
+                <StackPanel x:Name="AuthPanel" Margin="0,462,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="238" Height="106" >
+                    <Button x:Name="btnLogin" Background="White" FontFamily="Century Gothic" FontSize="20" Click="btnLogin_Click" BorderBrush="Black" FontWeight="Bold" Height="50" Width="212">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+  BorderThickness="2" CornerRadius="10">
+                                    <Grid>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="74">
+                                            <TextBlock Text="Войти" Width="92" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Style.Triggers>
+                                    <!-- Наведение -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="212" To="217" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <!-- Уход курсора -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="217" To="212" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <!-- Клик -->
+                                    <EventTrigger RoutedEvent="ButtonBase.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                     Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                     From="LightGray" To="White" Duration="0:0:0.5">
+                                                    <ColorAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseInOut"/>
+                                                    </ColorAnimation.EasingFunction>
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <!-- Отпускание кнопки -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                     Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                     From="LightGray" To="White" Duration="0:0:0.5">
+                                                    <ColorAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseInOut"/>
+                                                    </ColorAnimation.EasingFunction>
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btnReg" Background="White" FontFamily="Century Gothic" FontSize="16" Click="btnReg_Click" BorderBrush="Black" FontWeight="Bold" Height="40" Width="162" Margin="0,4,0,0" >
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="2" CornerRadius="10">
+                                    <Grid>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="140">
+                                            <TextBlock Text="Создать аккаунт" Width="141" Foreground="Black" VerticalAlignment="Center" FontSize="16" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Style.Triggers>
+                                    <!-- Наведение -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="162" To="167" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <!-- Уход курсора -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="167" To="162" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <!-- Клик -->
+                                    <EventTrigger RoutedEvent="ButtonBase.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                   Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                   From="LightGray" To="White" Duration="0:0:0.5">
+                                                    <ColorAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseInOut"/>
+                                                    </ColorAnimation.EasingFunction>
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+                                    <!-- Отпускание кнопки -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                   Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+                                   From="LightGray" To="White" Duration="0:0:0.5">
+                                                    <ColorAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseInOut"/>
+                                                    </ColorAnimation.EasingFunction>
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <StackPanel x:Name="RegistrationForm" Visibility="Collapsed" Opacity="0">
+                        <TextBox x:Name="txtUsername" Margin="0,5" Height="25" />
+                        <PasswordBox x:Name="txtPassword" Margin="0,5" Height="25" />
+                        <Button Content="Зарегистрироваться" Height="30" Margin="0,5"/>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="116,181,0,0" Height="99" Width="182">
+
+                    <TextBlock
+               TextWrapping="Wrap"
+               FontFamily="Century Gothic"
+               Foreground="Black" FontSize="14" FontWeight="Bold"
+               ><Run Language="ru-ru" Text="Имя пользователя"/></TextBlock>
+                    <TextBox x:Name="Name" Width="179"
+                             FocusVisualStyle="{x:Null}"
+                    FontSize="14"
+                FontWeight="Bold"
+                FontFamily="Century Gothic"                            
+                Foreground="Black"
+                CaretBrush="Black"
+                BorderBrush="#FF020202"
+                BorderThickness="0,0,0,2"
+                Height="28"
+                VerticalContentAlignment="Center"
+                Padding="20,0,0,0" TextChanged="Name_TextChanged" SelectionBrush="#FF0A0A0A" SelectionTextBrush="Black">
+                        <TextBox.Background>
+                            <ImageBrush AlignmentX="Left" 
+                                ImageSource="/user-icon.png" 
+                                Stretch="None"/>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBlock Text="Пароль"
+               TextWrapping="Wrap"
+               FontFamily="Century Gothic"
+               Foreground="Black" Height="17" FontSize="14" FontWeight="Bold"
+               />
+                    <PasswordBox x:Name="Password" Width="183"
+                  FontSize="14"
+                  FontWeight="Medium"
+                  FontFamily="Century Gothic"                            
+                  Foreground="Black"
+                  CaretBrush="Black"
+                  BorderBrush="Black"
+                  BorderThickness="0,0,0,2"
+                  Height="30"
+                  VerticalContentAlignment="Center"
+                  Padding="20,0,0,0" SelectionBrush="Black" SelectionTextBrush="Black">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/key-icon.png" Stretch="None"
+                                AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                </StackPanel>
+                <Grid Height="30" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Margin="344,0,6,0" >
+                        <Button x:Name="ButtonRoll" Content="-" Click="Button_Click" Background="White" BorderBrush="White" Foreground="Black" Width="25">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Style.Triggers>
+                                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="25" To="27" Duration="0:0:0.2"/>
+
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="25" To="27" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="27" To="25" Duration="0:0:0.2"/>
+
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="27" To="25" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button x:Name="ButtonExit" Content="X" Click="Button_Click1" Background="White" BorderBrush="White" Foreground="Black" Width="25">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Style.Triggers>
+                                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="25" To="27" Duration="0:0:0.2"/>
+
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="25" To="27" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="27" To="25" Duration="0:0:0.2"/>
+
+                                                    <DoubleAnimation
+          Storyboard.TargetProperty="Width"
+          From="27" To="25" Duration="0:0:0.2"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
